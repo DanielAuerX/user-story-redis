@@ -21,12 +21,12 @@ public class SongController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> saveSong(@NonNull @RequestBody Song request){
+    public ResponseEntity<Object> saveSong(@NonNull @RequestBody Song request) {
         return ResponseEntity.ok(songService.saveSong(request));
     }
 
     @GetMapping
-    public ResponseEntity<Object> getSongs(){
+    public ResponseEntity<Object> getSongs() {
         return ResponseEntity.ok(songService.getSongs());
     }
 }

@@ -15,18 +15,19 @@ public class PlaylistController {
 
     private final PlaylistService playlistService;
 
-    public record PlaylistRequest(String name, String genre, Integer numberOfSongs){}
+    public record PlaylistRequest(String name, String genre, Integer numberOfSongs) {
+    }
 
     @PostMapping
-    public ResponseEntity<Object> generatePlaylist(@NonNull @RequestBody PlaylistRequest request){
-        Playlist playlist  = new Playlist();
+    public ResponseEntity<Object> generatePlaylist(@NonNull @RequestBody PlaylistRequest request) {
+        Playlist playlist = new Playlist();
         playlist.setName(request.name());
         playlist.setGenre(request.genre());
         return ResponseEntity.ok(playlistService.generatePlaylist(playlist, request.numberOfSongs()));
     }
 
     @GetMapping
-    public ResponseEntity<Object> getPlaylists(){
+    public ResponseEntity<Object> getPlaylists() {
         return ResponseEntity.ok(playlistService.getPlaylists());
     }
 }

@@ -19,14 +19,14 @@ public class PlaylistService {
     public final SongRepository songRepository;
     private static final Logger log = LoggerFactory.getLogger(PlaylistService.class);
 
-    public Iterable<Playlist> getPlaylists(){
+    public Iterable<Playlist> getPlaylists() {
         return playlistRepository.findAll();
     }
 
-    public Playlist generatePlaylist(Playlist playlist, Integer numberOfSongs){
+    public Playlist generatePlaylist(Playlist playlist, Integer numberOfSongs) {
         List<Song> songsOfGenre = getSongs(playlist.getGenre(), numberOfSongs);
         playlist.setSongs(songsOfGenre);
-        log.info("Added "+numberOfSongs+" Songs to playlist '"+playlist.getName()+"' and saved it.");
+        log.info("Added " + numberOfSongs + " Songs to playlist '" + playlist.getName() + "' and saved it.");
         return playlistRepository.save(playlist);
     }
 
