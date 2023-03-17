@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/user-story/song")
 @RequiredArgsConstructor
 //@CrossOrigin
-public class SongController {
+public class
+SongController {
 
     private final SongService songService;
 

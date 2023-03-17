@@ -10,7 +10,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -26,10 +28,9 @@ public class PlaylistService {
     }
 
     public Playlist generatePlaylist(Playlist playlist, Integer numberOfSongs) {
-        List<Song> songsOfGenre = getSongs(playlist.getGenre(), numberOfSongs);
-        playlist.setSongs(songsOfGenre);
-
-        log.info("Added " + numberOfSongs + " Songs to playlist '" + playlist.getName() + "' and saved it.");
+        List<Song> songs = redisUtil.getRandomSongsByGenre(playlist.getGenre(), numberOfSongs);
+        playlist.setSongs(songs);
+        log.info("Added " + playlist.getSongs().size() + " Songs to playlist '" + playlist.getName() + "' and saved it.");
         return playlistRepository.save(playlist);
     }
 
