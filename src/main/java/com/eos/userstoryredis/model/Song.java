@@ -1,6 +1,8 @@
 package com.eos.userstoryredis.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
@@ -30,6 +32,7 @@ public class Song implements Serializable {
         Song song = new Song();
         song.setId(UUID.fromString(new String(songMap.get("id".getBytes()))));
         song.setName(new String(songMap.get("name".getBytes())));
+        song.setArtist(new String(songMap.get("artist".getBytes())));
         song.setAlbum(new String(songMap.get("album".getBytes())));
         song.setGenre(new String(songMap.get("genre".getBytes())));
         return song;
